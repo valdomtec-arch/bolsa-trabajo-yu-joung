@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Trabajo - Ju-Young</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4caf50;
+            --dark-color: #1b5e20;
+            --light-bg: #f4f9f4;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .info-general p {
+            margin: 0.5rem 0;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background-color: #e0e0e0;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn-submit {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #128c7e;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: var(--dark-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VACANTES EMPRESA JU-YOUNG</h1>
+        <p>Conectando el mejor talento con las mejores empresas</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card info-general">
+            <h2>Información General de la Planta</h2>
+            <p><strong>📍 Ubicación:</strong> Av. Carlos Salinas de Gortari 1000, El Milagro, Apodaca, N.L.</p>
+            <p><strong>👫 Género:</strong> Masculino / Femenino (Según vacante)</p>
+            <p><strong>🎂 Rango de Edad:</strong> 18 a 50 años</p>
+            <p><strong>🎓 Escolaridad Mínima:</strong> Primaria</p>
+            <p><strong>💳 Esquema de Pago:</strong> Semana desfasada vía Santander</p>
+            <p><strong>🩺 Proceso:</strong> ¡Sin exámenes médicos! Contratación inmediata (8:00 - 9:00 am)</p>
+        </div>
+
+        <div class="card">
+            <h2>Puestos Disponibles</h2>
+            <p>Selecciona un puesto para ver los detalles de sueldo, turnos y prestaciones:</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'ayudante-inyeccion')">Ayudante General (Inyección)</button>
+                <button class="tab-btn" onclick="openTab(event, 'inspector-calidad')">Inspector de Calidad</button>
+                <button class="tab-btn" onclick="openTab(event, 'lider-logistica')">Líder de Logística</button>
+                <button class="tab-btn" onclick="openTab(event, 'ayudante-prensas')">Ayudante (Prensas)</button>
+                <button class="tab-btn" onclick="openTab(event, 'ayudante-ensamble')">Ayudante (Ensamble)</button>
+            </div>
+
+            <div id="ayudante-inyeccion" class="tab-content active">
+                <h3>Ayudante General de Inyección <span class="badge">Hombre / Mujer</span></h3>
+                <p><strong>Actividades:</strong> Rebabeo de piezas plásticas para autos con navaja, llenado de reportes de producción, etiquetado, inspección visual y empaque.</p>
+                <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $3,735.00 MXN Libres (Noche).</p>
+                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Día 7:00 am - 7:00 pm / Noche 7:00 pm - 7:00 am) de Lunes a Viernes.</p>
+            </div>
+
+            <div id="inspector-calidad" class="tab-content">
+                <h3>Inspector de Calidad <span class="badge">Hombre / Mujer</span></h3>
+                <p><strong>Requisitos:</strong> Experiencia en calidad visual en áreas de inyección. Contar con zapatos de seguridad y sin problemas para laborar en ambientes con calor.</p>
+                <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $4,000.00 MXN Libres (Noche) aproximados.</p>
+                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm y de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
+            </div>
+
+            <div id="lider-logistica" class="tab-content">
+                <h3>Líder de Logística <span class="badge">Hombre</span></h3>
+                <p><strong>Sueldo Diario Inicial:</strong> $440.00 MXN.</p>
+                <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
+                <p><strong>Prestaciones:</strong> Fondo de ahorro, vales de despensa, premios de puntualidad y asistencia, y comedor subsidiado.</p>
+            </div>
+
+            <div id="ayudante-prensas" class="tab-content">
+                <h3>Ayudante General de Prensas <span class="badge">Hombre</span></h3>
+                <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN aprox. Libres.</p>
+                <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
+                <p><strong>Beneficios:</strong> Incluye bono de transporte, puntualidad, asistencia y tiempo extra.</p>
+            </div>
+
+            <div id="ayudante-ensamble" class="tab-content">
+                <h3>Ayudante General de Ensamble <span class="badge">Mujer</span></h3>
+                <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN aprox. Libres.</p>
+                <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
+                <p><strong>Beneficios:</strong> Comedor subsidiado ($20.74 diarios), fondo de ahorro, vales de despensa y aguinaldo de 15 días.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Requisitos para Contratación</h2>
+            <p>Favor de presentarse con la siguiente documentación en <strong>original y copia</strong>:</p>
+            <ul>
+                <li>Acta de nacimiento</li>
+                <li>Comprobante de domicilio y Comprobante de estudios</li>
+                <li>INE Original y copia</li>
+                <li>CURP 2026 y Constancia de Situación Fiscal (RFC 2026)</li>
+                <li>Número de Seguro Social (NSS)</li>
+                <li>Solicitud elaborada</li>
+                <li>Hoja de retención de Infonavit (en caso de aplicar)</li>
+            </ul>
+            <div class="alert-box">
+                <strong>🚌 Nota sobre el Transporte:</strong> Pasan las rutas de transporte público 105, 221 y 041 en la esquina de Concordia con Carlos Salinas. En caso de no contar con ruta directa de Juárez, se otorga un <strong>bono de transporte de $140 semanales</strong>.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Agendar Entrevista</h2>
+            <p>Completa tus datos para enviar tu solicitud directamente al reclutador por WhatsApp:</p>
+            
+            <form id="interviewForm">
+                <div>
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" required placeholder="Ej. Juan Pérez Gómez">
+                </div>
+
+                <div>
+                    <label for="curp">CURP:</label>
+                    <input type="text" id="curp" required placeholder="18 caracteres" maxlength="18" style="text-transform: uppercase;">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" min="18" max="50" required placeholder="Ej. 25">
+                    </div>
+                    <div>
+                        <label for="escolaridad">Escolaridad:</label>
+                        <select id="escolaridad" required>
+                            <option value="">Selecciona...</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                            <option value="Preparatoria">Preparatoria / Bachillerato</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="municipio">Municipio donde vives:</label>
+                    <input type="text" id="municipio" required placeholder="Ej. Apodaca, Juárez, etc.">
+                </div>
+
+                <div>
+                    <label for="puesto">Puesto de Interés:</label>
+                    <select id="puesto" required>
+                        <option value="">Selecciona el puesto...</option>
+                        <option value="Ayudante General de Inyección">Ayudante General de Inyección</option>
+                        <option value="Inspector de Calidad">Inspector de Calidad</option>
+                        <option value="Líder de Logística">Líder de Logística</option>
+                        <option value="Ayudante General de Prensas">Ayudante General de Prensas</option>
+                        <option value="Ayudante General de Ensamble">Ayudante General de Ensamble</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    💬 Enviar al WhatsApp del Reclutador
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Lógica de las pestañas interactivas
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Envío de datos por WhatsApp
+        document.getElementById('interviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Teléfono del Reclutador extraído del documento
+            const telefonoReclutador = "526461974763"; 
+            
+            // Obtener valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const curp = document.getElementById('curp').value.toUpperCase();
+            const edad = document.getElementById('edad').value;
+            const escolaridad = document.getElementById('escolaridad').value;
+            const municipio = document.getElementById('municipio').value;
+            const puesto = document.getElementById('puesto').value;
+
+            // Estructurar el mensaje de texto limpio y profesional
+            const mensaje = `Hola, me interesa agendar una entrevista para la vacante de Empresa Ju-Young.%0A%0A` +
+                            `*Datos del Candidato:*%0A` +
+                            `• *Nombre:* ${nombre}%0A` +
+                            `• *CURP:* ${curp}%0A` +
+                            `• *Edad:* ${edad} años%0A` +
+                            `• *Escolaridad:* ${escolaridad}%0A` +
+                            `• *Municipio:* ${municipio}%0A` +
+                            `• *Puesto de interés:* ${puesto}`;
+
+            // Crear el enlace de WhatsApp de manera nativa
+            const urlWhatsApp = `https://wa.me/${telefonoReclutador}?text=${mensaje}`;
+            
+            // Abrir en una pestaña nueva
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+</body>
+</html>
