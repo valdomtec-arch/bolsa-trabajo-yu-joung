@@ -46,7 +46,6 @@
             border-bottom: 5px solid var(--primary);
         }
 
-        /* Estilos del Logo Principal */
         .header-logo {
             max-width: 150px;
             height: auto;
@@ -104,7 +103,6 @@
             }
         }
 
-        /* Contenedor interactivo de la imagen YU-YOUNG dentro del bloque */
         .image-holder {
             position: relative;
             overflow: hidden;
@@ -112,7 +110,7 @@
             align-items: center;
             justify-content: center;
             background-color: var(--dark);
-            min-height: 380px; /* Altura ideal fija para desktop */
+            min-height: 380px;
         }
 
         .integrated-image {
@@ -120,31 +118,29 @@
             height: 100%;
             object-fit: cover;
             transition: all 0.4s ease-in-out;
-            animation: visualHeartbeat 2.5s infinite; /* Efecto latido continuo */
+            animation: visualHeartbeat 2.5s infinite;
         }
 
-        /* SOLUCIÓN AL TAMAÑO EN CELULARES */
         @media (max-width: 650px) {
             .image-holder {
                 min-height: auto; 
-                height: 260px; /* Forzamos una altura máxima controlada para celular */
-                background-color: #1e2229; /* Fondo oscuro por si la imagen es proporcional */
+                height: 260px;
+                background-color: #1e2229;
             }
 
             .integrated-image {
                 width: 100%;
                 height: 100%;
-                object-fit: contain; /* Encaja la imagen completa sin recortar bordes */
+                object-fit: contain;
             }
         }
 
         .image-holder:hover .integrated-image {
-            filter: blur(4px) brightness(0.8); /* Se difumina al pasar el cursor */
+            filter: blur(4px) brightness(0.8);
             transform: scale(1.03);
-            animation-play-state: paused; /* Se pausa el latido al interactuar */
+            animation-play-state: paused;
         }
 
-        /* Texto flotante interactivo */
         .image-holder::after {
             content: "¡Envía tus datos ahora!";
             position: absolute;
@@ -170,7 +166,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Bloque de requisitos generales al lado de la imagen */
         .info-general-integrated {
             padding: 30px;
             display: flex;
@@ -217,7 +212,6 @@
             border-radius: 3px;
         }
 
-        /* Listas estilizadas */
         ul {
             list-style: none;
         }
@@ -229,7 +223,6 @@
             font-size: 1rem;
         }
 
-        /* Iconos de check verdes */
         .benefits-list li::before {
             content: "✓";
             position: absolute;
@@ -239,7 +232,6 @@
             font-size: 1.1rem;
         }
 
-        /* Iconos de puntos amarillos */
         .requisitos-list li::before {
             content: "•";
             position: absolute;
@@ -250,38 +242,70 @@
             top: -2px;
         }
 
-        /* --- SISTEMA DE PESTAÑAS (PUESTOS) --- */
+        /* --- EFECTO EN BOTONES DE VACANTES (TABS) --- */
         .tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 12px;
             margin-bottom: 25px;
         }
 
         .tab-btn {
-            background-color: #e0e0e0;
+            background-color: #e8ebe1;
             color: var(--text);
             border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
+            padding: 12px 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease-in-out;
             flex-grow: 1;
             text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            
+            /* Animación de llamado a la acción automática */
+            animation: tabHintPulse 3s infinite ease-in-out;
         }
 
+        /* Efecto al pasar el dedo/cursor por encima */
+        .tab-btn:hover {
+            background-color: #d8ded0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        /* EFECTO DE PONCHADO (CLICK FISICO REALISTA) */
+        .tab-btn:active {
+            transform: translateY(2px); /* Se hunde visualmente */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset; /* Sombra interna de presión */
+        }
+
+        /* ESTADO ACTIVO (CUANDO ESTÁ SELECCIONADA) */
         .tab-btn.active {
-            background-color: var(--dark);
+            background: linear-gradient(135deg, #1e2229 0%, #343c4a 100%);
             color: var(--white);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            animation: none; /* Quitamos el parpadeo cuando ya fue presionado */
+            transform: none;
+        }
+        
+        .tab-btn.active:active {
+            transform: translateY(2px); /* Sigue teniendo efecto de ponchado al re-pulsar */
+        }
+
+        /* Animación suave que advierte al cliente que los botones se pueden "Pulsar" */
+        @keyframes tabHintPulse {
+            0% { transform: scale(1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); }
+            50% { transform: scale(1.03); box-sizing: border-box; border: 1px solid var(--jy-secondary); box-shadow: 0 6px 14px rgba(76, 175, 80, 0.25); }
+            100% { transform: scale(1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); }
         }
 
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
-            border-left: 5px solid var(--jy-green); /* Acento verde Ju-Young */
+            border-left: 5px solid var(--jy-green);
             padding-left: 20px;
             margin-left: 5px;
         }
@@ -307,7 +331,6 @@
             to { opacity: 1; }
         }
 
-        /* Barra de aviso importante */
         .important-notice {
             background-color: #fff9e6;
             border-left: 5px solid var(--primary);
@@ -318,13 +341,11 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        /* --- COLUMNA LATERAL (BARRA FIJA) --- */
         .sticky-sidebar {
             position: sticky;
             top: 20px;
         }
 
-        /* --- FORMULARIO DE POSTULACIÓN --- */
         .form-group {
             margin-bottom: 18px;
         }
@@ -358,7 +379,7 @@
             text-transform: uppercase;
         }
 
-        /* --- BOTÓN WHATSAPP DE ALTO IMPACTO (IGUAL A TOP BAND) --- */
+        /* --- BOTÓN WHATSAPP DE ALTO IMPACTO --- */
         .btn-whatsapp {
             display: flex;
             align-items: center;
@@ -377,7 +398,7 @@
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
             transition: all 0.3s ease;
-            animation: buttonPulse 2s infinite; /* Efecto pulso/latido del botón */
+            animation: buttonPulse 2s infinite;
         }
 
         .btn-whatsapp:hover {
@@ -398,19 +419,6 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Enlace de ubicación */
-        .maps-link {
-            color: #0056b3;
-            font-weight: bold;
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-
-        .maps-link:hover {
-            color: #003570;
-        }
-
-        /* Pie de página */
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -432,7 +440,6 @@
 
 <div class="main-wrapper">
     <main>
-        
         <div class="hero-split">
             <div class="image-holder">
                 <img src="imagen-yujoung.jpg" alt="Convocatoria Ju-Young" class="integrated-image">
@@ -473,7 +480,7 @@
                 <h3>Inspector de Calidad <span class="badge-jy">Hombre / Mujer</span></h3>
                 <p><strong>Requisitos:</strong> Experiencia en calidad visual en áreas de inyección. Contar con zapatos de seguridad y sin problemas para laborar en ambientes con calor.</p>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $4,000.00 MXN Libres (Noche) aproximados.</p>
-                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm y de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
+                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm and de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
             </div>
 
             <div id="lider-logistica" class="tab-content">
@@ -581,7 +588,6 @@
 </footer>
 
 <script>
-    // Lógica de las pestañas interactivas
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tab-content");
@@ -596,12 +602,9 @@
         evt.currentTarget.classList.add("active");
     }
 
-    // Envío de datos por WhatsApp
     function sendWhatsAppJY() {
-        // Teléfono del Reclutador obtenido del documento
         const telefonoReclutador = "526461974763"; 
         
-        // Obtener valores del formulario
         const nombre = document.getElementById('jy_nombre').value.trim();
         const curp = document.getElementById('jy_curp').value.trim().toUpperCase();
         const edad = document.getElementById('jy_edad').value;
@@ -609,19 +612,16 @@
         const municipio = document.getElementById('jy_municipio').value.trim();
         const puesto = document.getElementById('jy_puesto').value;
 
-        // Validaciones obligatorias
         if(!nombre || !curp || !edad || !escolaridad || !municipio || !puesto) {
             alert("Por favor, completa todos los campos para agendar tu entrevista.");
             return;
         }
 
-        // Validación de la CURP
         if(curp.length !== 18) {
             alert("La CURP debe tener exactamente 18 caracteres.");
             return;
         }
 
-        // Estructurar el mensaje de texto profesional y unificado
         const mensaje = `Hola, me interesa agendar una entrevista para la vacante de Empresa Ju-Young. Aquí están mis datos:\n\n` +
                         `• *Nombre completo:* ${nombre}\n` +
                         `• *CURP:* ${curp}\n` +
@@ -630,10 +630,7 @@
                         `• *Municipio:* ${municipio}\n` +
                         `• *Puesto de interés:* ${puesto}`;
 
-        // Crear el enlace de WhatsApp nativo unificado
         const urlWhatsAppJY = `https://wa.me/${telefonoReclutador}?text=${encodeURIComponent(mensaje)}`;
-        
-        // Abrir en una pestaña nueva
         window.open(urlWhatsAppJY, '_blank');
     }
 </script>
