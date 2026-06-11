@@ -3,111 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolsa de Trabajo - Ju-Young</title>
+    <title>Bolsa de Trabajo - Empresa Ju-Young</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #4caf50;
-            --dark-color: #1b5e20;
-            --light-bg: #f4f9f4;
-            --text-color: #333;
+            --primary: #f2ba13;
+            --primary-dark: #d4a20b;
+            --dark: #1e2229;
+            --light: #f4f6f9;
+            --white: #ffffff;
+            --text: #333333;
+            --text-muted: #666666;
+            --whatsapp: #25d366;
+            
+            /* Colores originales de marca conservados para acentos */
+            --jy-green: #2e7d32;
+            --jy-secondary: #4caf50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--text-color);
         }
 
+        /* --- ENCABEZADO ESTILIZADO CON LOGO --- */
         header {
-            background-color: var(--primary-color);
-            color: white;
+            background: linear-gradient(135deg, #1e2229 0%, #2c323f 100%);
+            color: var(--white); 
             text-align: center;
-            padding: 2rem 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 40px 20px 50px 20px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        /* Estilos del Logo Principal */
+        .header-logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 6px;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 2rem;
+            font-size: 2.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         header p {
-            margin: 0.5rem 0 0;
-            font-style: italic;
-            opacity: 0.9;
+            font-size: 1.3rem; 
+            max-width: 700px; 
+            margin: 0 auto;
+            font-weight: 300;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* --- CONTENEDOR PRINCIPAL MIXTO --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
         }
 
+        @media (max-width: 992px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- SECCIÓN INTEGRADA: IMAGEN YU-YOUNG + REQUISITOS GENERALES --- */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 650px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* Contenedor interactivo de la imagen YU-YOUNG dentro del bloque */
+        .image-holder {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark);
+            min-height: 380px; /* Altura ideal fija para desktop */
+        }
+
+        .integrated-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease-in-out;
+            animation: visualHeartbeat 2.5s infinite; /* Efecto latido continuo */
+        }
+
+        /* SOLUCIÓN AL TAMAÑO EN CELULARES */
+        @media (max-width: 650px) {
+            .image-holder {
+                min-height: auto; 
+                height: 260px; /* Forzamos una altura máxima controlada para celular */
+                background-color: #1e2229; /* Fondo oscuro por si la imagen es proporcional */
+            }
+
+            .integrated-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* Encaja la imagen completa sin recortar bordes */
+            }
+        }
+
+        .image-holder:hover .integrated-image {
+            filter: blur(4px) brightness(0.8); /* Se difumina al pasar el cursor */
+            transform: scale(1.03);
+            animation-play-state: paused; /* Se pausa el latido al interactuar */
+        }
+
+        /* Texto flotante interactivo */
+        .image-holder::after {
+            content: "¡Envía tus datos ahora!";
+            position: absolute;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: rgba(30, 34, 41, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border: 1px solid var(--primary);
+        }
+
+        .image-holder:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes visualHeartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Bloque de requisitos generales al lado de la imagen */
+        .info-general-integrated {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 650px) {
+            .info-general-integrated {
+                padding: 20px;
+            }
+        }
+
+        /* --- TARJETAS DE CONTENIDO --- */
         .card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
         }
 
-        .card-image {
-            text-align: center;
-        }
-
-        .card-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        @media (max-width: 650px) {
+            .card {
+                padding: 20px;
+            }
         }
 
         h2 {
-            color: var(--dark-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .info-general p {
-            margin: 0.5rem 0;
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 3px;
         }
 
+        /* Listas estilizadas */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        /* Iconos de check verdes */
+        .benefits-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Iconos de puntos amarillos */
+        .requisitos-list li::before {
+            content: "•";
+            position: absolute;
+            left: 5px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            line-height: 0.9;
+            top: -2px;
+        }
+
+        /* --- SISTEMA DE PESTAÑAS (PUESTOS) --- */
         .tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 25px;
         }
 
         .tab-btn {
             background-color: #e0e0e0;
+            color: var(--text);
             border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 5px;
+            padding: 10px 18px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            flex: 1;
-            min-width: 140px;
+            flex-grow: 1;
+            text-align: center;
         }
 
         .tab-btn.active {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--dark);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
+            border-left: 5px solid var(--jy-green); /* Acento verde Ju-Young */
+            padding-left: 20px;
+            margin-left: 5px;
         }
 
         .tab-content.active {
             display: block;
+        }
+
+        .badge-jy {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: var(--dark-color);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            vertical-align: middle;
         }
 
         @keyframes fadeIn {
@@ -115,105 +307,152 @@
             to { opacity: 1; }
         }
 
-        ul {
-            padding-left: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        .alert-box {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 4px;
-        }
-
-        form {
-            display: grid;
-            gap: 1rem;
-        }
-
-        label {
-            font-weight: bold;
-            color: var(--dark-color);
-        }
-
-        input, select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+        /* Barra de aviso importante */
+        .important-notice {
+            background-color: #fff9e6;
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
             font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
-        input:focus, select:focus {
+        /* --- COLUMNA LATERAL (BARRA FIJA) --- */
+        .sticky-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        /* --- FORMULARIO DE POSTULACIÓN --- */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+            border-color: var(--primary);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(242, 186, 19, 0.15);
         }
 
-        .btn-submit {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
+        .uppercase-input {
+            text-transform: uppercase;
+        }
+
+        /* --- BOTÓN WHATSAPP DE ALTO IMPACTO (IGUAL A TOP BAND) --- */
+        .btn-whatsapp {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 0.5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background-color: #128c7e;
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: #e8f5e9;
-            color: var(--dark-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
-            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            margin-top: 22px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            animation: buttonPulse 2s infinite; /* Efecto pulso/latido del botón */
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, #22c35e 0%, #1b9f4d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Enlace de ubicación */
+        .maps-link {
+            color: #0056b3;
+            font-weight: bold;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .maps-link:hover {
+            color: #003570;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--primary);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>VACANTES EMPRESA JU-YOUNG</h1>
-        <p>Conectando el mejor talento con las mejores empresas</p>
-    </header>
+<header>
+    <img src="imagen-logo.jpg" alt="Logo Principal" class="header-logo">
+    <h1>EMPRESA JU-YOUNG</h1>
+    <p>Conectando el mejor talento con las mejores empresas</p>
+</header>
 
-    <div class="container">
+<div class="main-wrapper">
+    <main>
         
-        <div class="card card-image">
-            <img src="imagen-yu-joung.jpg" alt="Empresa Ju-Young">
+        <div class="hero-split">
+            <div class="image-holder">
+                <img src="imagen-yujoung.jpg" alt="Convocatoria Ju-Young" class="integrated-image">
+            </div>
+            <div class="info-general-integrated">
+                <h2>Información de Planta</h2>
+                <ul class="requisitos-list">
+                    <li><strong>📍 Ubicación:</strong> Av. Carlos Salinas de Gortari 1000, El Milagro, Apodaca, N.L.</li>
+                    <li><strong>👫 Género:</strong> Masculino / Femenino (Según vacante)</li>
+                    <li><strong>🎂 Rango de Edad:</strong> 18 a 50 años</li>
+                    <li><strong>🎓 Escolaridad Mínima:</strong> Primaria</li>
+                    <li><strong>💳 Esquema de Pago:</strong> Semana desfasada vía Santander</li>
+                    <li><strong>🩺 Proceso:</strong> ¡Sin exámenes médicos! Contratación inmediata (8:00 - 9:00 am)</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="card info-general">
-            <h2>Información General de la Planta</h2>
-            <p><strong>📍 Ubicación:</strong> Av. Carlos Salinas de Gortari 1000, El Milagro, Apodaca, N.L.</p>
-            <p><strong>👫 Género:</strong> Masculino / Femenino (Según vacante)</p>
-            <p><strong>🎂 Rango de Edad:</strong> 18 a 50 años</p>
-            <p><strong>🎓 Escolaridad Mínima:</strong> Primaria</p>
-            <p><strong>💳 Esquema de Pago:</strong> Semana desfasada vía Santander</p>
-            <p><strong>🩺 Proceso:</strong> ¡Sin exámenes médicos! Contratación inmediata (8:00 - 9:00 am)</p>
-        </div>
-
-        <div class="card">
+        <section class="card">
             <h2>Puestos Disponibles</h2>
-            <p>Selecciona un puesto para ver los detalles de sueldo, turnos y prestaciones:</p>
+            <p style="margin-bottom: 20px;">Selecciona un puesto para ver los detalles de sueldo, turnos y prestaciones:</p>
             
             <div class="tabs">
                 <button class="tab-btn active" onclick="openTab(event, 'ayudante-inyeccion')">Ayudante General (Inyección)</button>
@@ -224,45 +463,45 @@
             </div>
 
             <div id="ayudante-inyeccion" class="tab-content active">
-                <h3>Ayudante General de Inyección <span class="badge">Hombre / Mujer</span></h3>
+                <h3>Ayudante General de Inyección <span class="badge-jy">Hombre / Mujer</span></h3>
                 <p><strong>Actividades:</strong> Rebabeo de piezas plásticas para autos con navaja, llenado de reportes de producción, etiquetado, inspección visual y empaque.</p>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $3,735.00 MXN Libres (Noche).</p>
                 <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Día 7:00 am - 7:00 pm / Noche 7:00 pm - 7:00 am) de Lunes a Viernes.</p>
             </div>
 
             <div id="inspector-calidad" class="tab-content">
-                <h3>Inspector de Calidad <span class="badge">Hombre / Mujer</span></h3>
+                <h3>Inspector de Calidad <span class="badge-jy">Hombre / Mujer</span></h3>
                 <p><strong>Requisitos:</strong> Experiencia en calidad visual en áreas de inyección. Contar con zapatos de seguridad y sin problemas para laborar en ambientes con calor.</p>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $4,000.00 MXN Libres (Noche) aproximados.</p>
                 <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm y de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
             </div>
 
             <div id="lider-logistica" class="tab-content">
-                <h3>Líder de Logística <span class="badge">Hombre</span></h3>
+                <h3>Líder de Logística <span class="badge-jy">Hombre</span></h3>
                 <p><strong>Sueldo Diario Inicial:</strong> $440.00 MXN.</p>
                 <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
                 <p><strong>Prestaciones:</strong> Fondo de ahorro, vales de despensa, premios de puntualidad y asistencia, y comedor subsidiado.</p>
             </div>
 
             <div id="ayudante-prensas" class="tab-content">
-                <h3>Ayudante General de Prensas <span class="badge">Hombre</span></h3>
+                <h3>Ayudante General de Prensas <span class="badge-jy">Hombre</span></h3>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN aprox. Libres.</p>
                 <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
                 <p><strong>Beneficios:</strong> Incluye bono de transporte, puntualidad, asistencia y tiempo extra.</p>
             </div>
 
             <div id="ayudante-ensamble" class="tab-content">
-                <h3>Ayudante General de Ensamble <span class="badge">Mujer</span></h3>
+                <h3>Ayudante General de Ensamble <span class="badge-jy">Mujer</span></h3>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN aprox. Libres.</p>
                 <p><strong>Horario:</strong> Turno fijo de Día (7:00 am a 7:00 pm) de Lunes a Viernes.</p>
                 <p><strong>Beneficios:</strong> Comedor subsidiado ($20.74 diarios), fondo de ahorro, vales de despensa y aguinaldo de 15 días.</p>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
+        <section class="card">
             <h2>Requisitos para Contratación</h2>
             <p>Favor de presentarse con la siguiente documentación en <strong>original y copia</strong>:</p>
-            <ul>
+            <ul class="benefits-list">
                 <li>Acta de nacimiento</li>
                 <li>Comprobante de domicilio y Comprobante de estudios</li>
                 <li>INE Original y copia</li>
@@ -271,50 +510,51 @@
                 <li>Solicitud elaborada</li>
                 <li>Hoja de retención de Infonavit (en caso de aplicar)</li>
             </ul>
-            <div class="alert-box">
-                <strong>🚌 Nota sobre el Transporte:</strong> Pasan las rutas de transporte público 105, 221 y 041 en la esquina de Concordia con Carlos Salinas. En caso de no contar con ruta [...]
+            <div class="important-notice">
+                <strong>🚌 Nota sobre el Transporte:</strong> Pasan las rutas de transporte público 105, 221 y 041 en la esquina de Concordia con Carlos Salinas. En caso de no contar con ruta directa de Juárez, se otorga un <strong>bono de transporte de $140 semanales</strong>.
             </div>
-        </div>
+        </section>
+    </main>
 
+    <aside class="sticky-sidebar">
         <div class="card">
-            <h2>Agendar Entrevista</h2>
-            <p>Completa tus datos para enviar tu solicitud directamente al reclutador por WhatsApp:</p>
+            <h2 style="margin-bottom: 15px;">Postúlate Aquí</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Ingresa tus datos válidos para agendar tu entrevista de inmediato.</p>
             
-            <form id="interviewForm">
-                <div>
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" required placeholder="Ej. Juan Pérez Gómez">
+            <form id="postulaForm" onsubmit="event.preventDefault(); sendWhatsAppJY();">
+                <div class="form-group">
+                    <label for="jy_nombre">Nombre Completo:</label>
+                    <input type="text" id="jy_nombre" required placeholder="Ej. Juan Pérez">
                 </div>
 
-                <div>
-                    <label for="curp">CURP:</label>
-                    <input type="text" id="curp" required placeholder="18 caracteres" maxlength="18" style="text-transform: uppercase;">
+                <div class="form-group">
+                    <label for="jy_curp">CURP:</label>
+                    <input type="text" id="jy_curp" class="uppercase-input" maxlength="18" minlength="18" required placeholder="18 caracteres obligatorios">
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div>
-                        <label for="edad">Edad:</label>
-                        <input type="number" id="edad" min="18" max="50" required placeholder="Ej. 25">
-                    </div>
-                    <div>
-                        <label for="escolaridad">Escolaridad:</label>
-                        <select id="escolaridad" required>
-                            <option value="">Selecciona...</option>
-                            <option value="Primaria">Primaria</option>
-                            <option value="Secundaria">Secundaria</option>
-                            <option value="Preparatoria">Preparatoria / Bachillerato</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="jy_edad">Edad:</label>
+                    <input type="number" id="jy_edad" min="18" max="50" required placeholder="Ej. 25">
                 </div>
 
-                <div>
-                    <label for="municipio">Municipio donde vives:</label>
-                    <input type="text" id="municipio" required placeholder="Ej. Apodaca, Juárez, etc.">
+                <div class="form-group">
+                    <label for="jy_escolaridad">Escolaridad:</label>
+                    <select id="jy_escolaridad" required>
+                        <option value="">Selecciona...</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                        <option value="Preparatoria">Preparatoria / Bachillerato</option>
+                    </select>
                 </div>
 
-                <div>
-                    <label for="puesto">Puesto de Interés:</label>
-                    <select id="puesto" required>
+                <div class="form-group">
+                    <label for="jy_municipio">Municipio donde vives:</label>
+                    <input type="text" id="jy_municipio" required placeholder="Ej. Apodaca, Juárez, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="jy_puesto">Puesto de Interés:</label>
+                    <select id="jy_puesto" required>
                         <option value="">Selecciona el puesto...</option>
                         <option value="Ayudante General de Inyección">Ayudante General de Inyección</option>
                         <option value="Inspector de Calidad">Inspector de Calidad</option>
@@ -324,61 +564,78 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn-submit">
-                    💬 Enviar al WhatsApp del Reclutador
+                <button type="submit" class="btn-whatsapp">
+                    <svg viewBox="0 0 448 512">
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                    Agendar Entrevista por WhatsApp
                 </button>
             </form>
         </div>
+    </aside>
+</div>
 
-    </div>
+<footer>
+    <p>© 2026 Reclutamiento Empresa Ju-Young. Todos los derechos reservados.</p>
+    <p style="font-size: 0.8rem; margin-top: 6px; color: #aaa;">Este es un sitio web informativo de vacantes reales basado en la entrega obligatoria de papelería completa.</p>
+</footer>
 
-    <script>
-        // Lógica de las pestañas interactivas
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+<script>
+    // Lógica de las pestañas interactivas
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Envío de datos por WhatsApp
+    function sendWhatsAppJY() {
+        // Teléfono del Reclutador obtenido del documento
+        const telefonoReclutador = "526461974763"; 
+        
+        // Obtener valores del formulario
+        const nombre = document.getElementById('jy_nombre').value.trim();
+        const curp = document.getElementById('jy_curp').value.trim().toUpperCase();
+        const edad = document.getElementById('jy_edad').value;
+        const escolaridad = document.getElementById('jy_escolaridad').value;
+        const municipio = document.getElementById('jy_municipio').value.trim();
+        const puesto = document.getElementById('jy_puesto').value;
+
+        // Validaciones obligatorias
+        if(!nombre || !curp || !edad || !escolaridad || !municipio || !puesto) {
+            alert("Por favor, completa todos los campos para agendar tu entrevista.");
+            return;
         }
 
-        // Envío de datos por WhatsApp
-        document.getElementById('interviewForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Teléfono del Reclutador extraído del documento
-            const telefonoReclutador = "526461974763"; 
-            
-            // Obtener valores del formulario
-            const nombre = document.getElementById('nombre').value;
-            const curp = document.getElementById('curp').value.toUpperCase();
-            const edad = document.getElementById('edad').value;
-            const escolaridad = document.getElementById('escolaridad').value;
-            const municipio = document.getElementById('municipio').value;
-            const puesto = document.getElementById('puesto').value;
+        // Validación de la CURP
+        if(curp.length !== 18) {
+            alert("La CURP debe tener exactamente 18 caracteres.");
+            return;
+        }
 
-            // Estructurar el mensaje de texto limpio y profesional
-            const mensaje = `Hola, me interesa agendar una entrevista para la vacante de Empresa Ju-Young.%0A%0A` +
-                            `*Datos del Candidato:*%0A` +
-                            `• *Nombre:* ${nombre}%0A` +
-                            `• *CURP:* ${curp}%0A` +
-                            `• *Edad:* ${edad} años%0A` +
-                            `• *Escolaridad:* ${escolaridad}%0A` +
-                            `• *Municipio:* ${municipio}%0A` +
-                            `• *Puesto de interés:* ${puesto}`;
+        // Estructurar el mensaje de texto profesional y unificado
+        const mensaje = `Hola, me interesa agendar una entrevista para la vacante de Empresa Ju-Young. Aquí están mis datos:\n\n` +
+                        `• *Nombre completo:* ${nombre}\n` +
+                        `• *CURP:* ${curp}\n` +
+                        `• *Edad:* ${edad} años\n` +
+                        `• *Escolaridad:* ${escolaridad}\n` +
+                        `• *Municipio:* ${municipio}\n` +
+                        `• *Puesto de interés:* ${puesto}`;
 
-            // Crear el enlace de WhatsApp de manera nativa
-            const urlWhatsApp = `https://wa.me/${telefonoReclutador}?text=${mensaje}`;
-            
-            // Abrir en una pestaña nueva
-            window.open(urlWhatsApp, '_blank');
-        });
-    </script>
+        // Crear el enlace de WhatsApp nativo unificado
+        const urlWhatsAppJY = `https://wa.me/${telefonoReclutador}?text=${encodeURIComponent(mensaje)}`;
+        
+        // Abrir en una pestaña nueva
+        window.open(urlWhatsAppJY, '_blank');
+    }
+</script>
 </body>
 </html>
