@@ -16,6 +16,7 @@
             --text: #333333;
             --text-muted: #666666;
             --whatsapp: #25d366;
+            --maps-blue: #4285F4;
             
             /* Colores originales de marca conservados para acentos */
             --jy-green: #2e7d32;
@@ -179,6 +180,36 @@
             }
         }
 
+        /* --- BOTÓN MAPS --- */
+        .btn-maps {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e8f0fe;
+            color: var(--maps-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 28px;
+            width: fit-content;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(66, 133, 244, 0.2);
+        }
+
+        .btn-maps:hover {
+            background-color: #d2e3fc;
+            transform: translateY(-1px);
+        }
+
+        .btn-maps svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--maps-blue);
+        }
+
         /* --- TARJETAS DE CONTENIDO --- */
         .card {
             background-color: var(--white);
@@ -269,33 +300,29 @@
             animation: tabHintPulse 3s infinite ease-in-out;
         }
 
-        /* Efecto al pasar el dedo/cursor por encima */
         .tab-btn:hover {
             background-color: #d8ded0;
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
         }
 
-        /* EFECTO DE PONCHADO (CLICK FISICO REALISTA) */
         .tab-btn:active {
-            transform: translateY(2px); /* Se hunde visualmente */
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset; /* Sombra interna de presión */
+            transform: translateY(2px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
         }
 
-        /* ESTADO ACTIVO (CUANDO ESTÁ SELECCIONADA) */
         .tab-btn.active {
             background: linear-gradient(135deg, #1e2229 0%, #343c4a 100%);
             color: var(--white);
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            animation: none; /* Quitamos el parpadeo cuando ya fue presionado */
+            animation: none;
             transform: none;
         }
         
         .tab-btn.active:active {
-            transform: translateY(2px); /* Sigue teniendo efecto de ponchado al re-pulsar */
+            transform: translateY(2px);
         }
 
-        /* Animación suave que advierte al cliente que los botones se pueden "Pulsar" */
         @keyframes tabHintPulse {
             0% { transform: scale(1); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); }
             50% { transform: scale(1.03); box-sizing: border-box; border: 1px solid var(--jy-secondary); box-shadow: 0 6px 14px rgba(76, 175, 80, 0.25); }
@@ -447,8 +474,14 @@
             <div class="info-general-integrated">
                 <h2>Información de Planta</h2>
                 <ul class="requisitos-list">
-                    <li><strong>📍 Ubicación:</strong> Av. Carlos Salinas de Gortari 1000, El Milagro, Apodaca, N.L.</li>
-                    <li><strong>👫 Género:</strong> Masculino / Femenino (Según vacante)</li>
+                    <li><strong>📍 Ubicación:</strong> Av. Carlos Salinas de Gortari 1000, El Milagro, 66634 Cdad. Apodaca, N.L.</li>
+                    <a href="https://share.google/o6HbSlC1lKurKL7kz" target="_blank" class="btn-maps">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Ver en Google Maps
+                    </a>
+                    <li style="margin-top: 14px;"><strong>👫 Género:</strong> Masculino / Femenino (Según vacante)</li>
                     <li><strong>🎂 Rango de Edad:</strong> 18 a 50 años</li>
                     <li><strong>🎓 Escolaridad Mínima:</strong> Primaria</li>
                     <li><strong>💳 Esquema de Pago:</strong> Semana desfasada vía Santander</li>
@@ -480,7 +513,7 @@
                 <h3>Inspector de Calidad <span class="badge-jy">Hombre / Mujer</span></h3>
                 <p><strong>Requisitos:</strong> Experiencia en calidad visual en áreas de inyección. Contar con zapatos de seguridad y sin problemas para laborar en ambientes con calor.</p>
                 <p><strong>Sueldo Semanal:</strong> $3,400.00 MXN Libres (Día) / $4,000.00 MXN Libres (Noche) aproximados.</p>
-                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm and de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
+                <p><strong>Horarios:</strong> Rotativos cada 2 semanas (Lunes a Viernes de 7:00 am a 7:00 pm y de 7:00 pm a 7:00 am). Disponibilidad de tiempo extra fines de semana.</p>
             </div>
 
             <div id="lider-logistica" class="tab-content">
